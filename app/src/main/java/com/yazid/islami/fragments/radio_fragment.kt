@@ -52,17 +52,51 @@ class radio_fragment : Fragment() {
         val view =inflater.inflate(R.layout.fragment_radio_fragment, container, false)
         // Inflate the layout for this fragment
         val playBtm = view.findViewById<ImageView>(R.id.play)
+        val forwardBtm = view.findViewById<ImageView>(R.id.forward)
+        val backwordBtm = view.findViewById<ImageView>(R.id.backword)
         val webView: WebView =  view.findViewById(R.id.webView)
+        var Channel = mutableListOf<String>()
+        Channel.add("https://backup.qurango.net/radio/ibrahim_alakdar")
+        Channel.add("https://backup.qurango.net/radio/ahmad_alajmy")
+        Channel.add("https://backup.qurango.net/radio/ahmad_saber")
+        var ChannelNumber=0
+        var signal = false
+
         playBtm.setOnClickListener{
-
-                    Toast.makeText(requireContext(),"start",Toast.LENGTH_LONG).show()
-                    PlayAudio(webView)
-
-
-
-
+                    if (!signal){
+                        PlayAudio(webView,Channel[ChannelNumber])
+                        Toast.makeText(requireContext(),"start",Toast.LENGTH_LONG).show()
+                        signal=true
+                    }else{
+                        StopAudio(webView)
+                        Toast.makeText(requireContext(),"stop",Toast.LENGTH_LONG).show()
+                        signal=false
+                    }
         }
 
+        forwardBtm.setOnClickListener{
+            if (ChannelNumber>=2){
+                ChannelNumber=0
+            }else{
+                ChannelNumber++
+            }
+
+            PlayAudio(webView,Channel[ChannelNumber])
+            Toast.makeText(requireContext(),"start",Toast.LENGTH_LONG).show()
+            signal=true
+        }
+
+        backwordBtm.setOnClickListener{
+            if (ChannelNumber<=0){
+                ChannelNumber=0
+            }else{
+                ChannelNumber--
+            }
+
+            PlayAudio(webView,Channel[ChannelNumber])
+            Toast.makeText(requireContext(),"start",Toast.LENGTH_LONG).show()
+            signal=true
+        }
         return view
 
 
@@ -72,7 +106,7 @@ class radio_fragment : Fragment() {
 
 // ...
 
-    fun PlayAudio(webView:WebView) {
+    fun PlayAudio(webView:WebView,ChannelUrl:String) {
         // Replace "https://backup.qurango.net/radio/ibrahim_alakdar" with your actual audio URL
 
 
@@ -85,11 +119,27 @@ class radio_fragment : Fragment() {
         // Set a WebViewClient to handle page navigation
         webView.webViewClient = WebViewClient()
         // Load the URL into the WebView
-        webView.loadUrl("https://backup.qurango.net/radio/ibrahim_alakdar")
+        webView.loadUrl(ChannelUrl)
 
 
         }
 
+    fun StopAudio(webView:WebView) {
+        // Replace "https://backup.qurango.net/radio/ibrahim_alakdar" with your actual audio URL
 
+
+
+
+        // Enable JavaScript (optional, depending on your needs)
+        webView.settings.javaScriptEnabled = true
+
+
+        // Set a WebViewClient to handle page navigation
+        webView.webViewClient = WebViewClient()
+        // Load the URL into the WebView
+        webView.loadUrl("google.com")
+
+
+    }
 
 }
