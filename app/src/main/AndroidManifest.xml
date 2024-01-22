@@ -15,8 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Islami"
         tools:targetApi="31">
-
-
+        <activity
+            android:name=".Signle_Surah_Item"
+            android:exported="false" />
         <activity
             android:name=".FragmentContainterActivity"
             android:exported="false" />

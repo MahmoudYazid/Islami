@@ -90,6 +90,18 @@ dependencies {
         // optional - Test helpers for Lifecycle runtime
         testImplementation ("androidx.lifecycle:lifecycle-runtime-testing:$lifecycle_version")
         implementation ("androidx.navigation:navigation-fragment-ktx:2.3.5")
+
+        //retrofit
+        // Retrofit
+
+
+        implementation("com.squareup.retrofit2:retrofit:2.9.0")
+        implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
+        // gson
+
+        //
+        implementation("com.squareup.retrofit2:converter-gson:2.3.0") // Replace with the latest version
+
     }
 
 }
