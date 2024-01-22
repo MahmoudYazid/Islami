@@ -26,7 +26,10 @@
             android:id="@+id/menu_item_4"
             android:title="القرآن"
             android:icon="@drawable/moshaf_blue" />
-
+        <item
+            android:id="@+id/menu_item_5"
+            android:title="my profile"
+            android:icon="@drawable/baseline_manage_accounts_24" />
 
 
         <!-- Add more items as needed -->
